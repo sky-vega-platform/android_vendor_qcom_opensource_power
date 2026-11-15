@@ -175,6 +175,13 @@ int power_hint_override(power_hint_t hint, void* data) {
         case POWER_HINT_VIDEO_DECODE:
             ret_val = process_video_decode_hint(data);
             break;
+        case POWER_HINT_INTERACTION:
+            /* The perf lock client of msm8974 has no perf_hint() for the
+             * scroll boost of power-common, touch boost is up to the
+             * kernel here.
+             */
+            ret_val = HINT_HANDLED;
+            break;
         default:
             break;
     }
